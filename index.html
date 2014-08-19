@@ -11,7 +11,7 @@
     <br />
     <br />
 
-    <table class="table table-bordered">
+    <!--<table class="table table-bordered">
         <tr>
             <td rowspan="2">A</td>
             <td>B</td>
@@ -69,21 +69,95 @@
         <tr>
             <td>C</td>
         </tr>
-    </table>
+    </table>-->
+
+    <!--<table class="table table-bordered">
+        <tr>
+            <th><input type="text" class="form-control customField" /></th>
+            <th><input type="text" class="form-control customField" /></th>
+            <th><input type="text" class="form-control customField" /></th>
+        </tr>
+    </table>-->
 
 
 
+    <div>
+
+    </div>
 
 
-
-
-
+    <div class="panel hidden">
+        <div class="panel-heading">Panel heading without title</div>
+        <div class="panel-body">
+            <table class="table table-bordered"></table>
+        </div>
+    </div>
 
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
 
+        var sections = [
+            { Id: 1, Name: 'Section-1', RowOrder: 1, Colspan: 1, Rowspan: 1, Color: 'panel-success', RowCount: 1, Fields: [] },
+            { Id: 2, Name: 'Section-2', RowOrder: 1, Colspan: 1, Rowspan: 1, Color: 'panel-info', RowCount: 1, Fields: [] },
+            {
+                Id: 3, Name: 'Section-3', RowOrder: 2, Colspan: 2, Rowspan: 1, Color: 'panel-danger', RowCount: 2,
+                Fields: [{ Id: 1, Name: 'isim', RowOrder: 1, Colspan: 1, Rowspan: 1 },
+                { FieldId: 2, Name: 'soyisim', RowOrder: 1, Colspan: 1, Rowspan: 1 },
+                { FieldId: 3, Name: 'email', RowOrder: 1, Colspan: 1, Rowspan: 1 },
+                { FieldId: 4, Name: 'il', RowOrder: 2, Colspan: 2, Rowspan: 1 },
+                { FieldId: 5, Name: 'ilçe', RowOrder: 2, Colspan: 1, Rowspan: 1 }]
+            }
+        ];
+
+        var layout = { Id: 1, RowCount: 2, Sections: sections };
+
+
+        $(function () {
+            var table = $('<table class="table table-bordered" />');
+
+            for (var i = 0; i < layout.RowCount; i++) {
+                var tr = $('<tr/>');
+
+                $.each(layout.Sections, function () {
+                    if (this.RowOrder == i + 1) {
+                        var panel = $('.panel').clone()
+                            .removeClass('hidden')
+                            .addClass(this.Color);
+                        panel.children('.panel-heading').html(this.Name);
+
+                        if (this.Fields.length > 0) {
+                            for (var j = 0; j < this.RowCount; j++) {
+                                var pTr = $('<tr/>');
+                                $.each(this.Fields, function () {
+                                    if (this.RowOrder == j + 1) {
+                                        var input = $('<input type="text" class="form-control">');
+                                        var td = $('<td/>')
+                                            .attr('colspan', this.Colspan)
+                                            .attr('rowspan', this.Rowspan)
+                                            .append(input);
+
+                                        pTr.append(td);
+                                    }
+                                });
+                                panel.find('.panel-body table').append(pTr);
+                            }
+                        }
+
+                        tr.append($('<td/>')
+                            .attr('colspan', this.Colspan)
+                            .attr('rowspan', this.Rowspan)
+                            .append(panel));
+
+                    }
+                });
+
+                table.append(tr);
+            }
+
+            $("div").append(table);
+        });
     </script>
 </body>
 </html>
