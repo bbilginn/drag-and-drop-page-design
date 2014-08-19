@@ -34,7 +34,7 @@
         .SizeChooser {
             margin: 5px 10px;
             position: relative;
-            text-align: center
+            text-align: center;
         }
 
             .SizeChooser table {
@@ -57,6 +57,7 @@
         .SizeChooser-selected {
             border: 1px #333 solid !important;
         }
+
         .SizeChooser input {
             width: 30px;
         }
@@ -147,11 +148,11 @@
             <span><i class="fa fa-edit contenteditable" style="cursor: pointer"></i> <span contenteditable="false">Panel primary</span></span>
             <div class="pull-right">
                 <!--<a class="btn btn-xs btn-default move-cursor"><i class="fa fa-arrows"></i></a>-->
-                <button type="button" class="btn btn-xs btn-default panel-toggle" title="@Html.Localize(" btn_toggle")">
+                <button type="button" class="btn btn-xs btn-default panel-toggle" title='@Html.Localize("btn_toggle")'>
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" title="@Html.Localize(" btn_color")">
+                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" title='@Html.Localize("btn_color")'>
                         <i class="fa fa-eye"></i>
                     </button>
                     <ul class="dropdown-menu" role="menu">
@@ -176,7 +177,7 @@
                     </ul>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" title="@Html.Localize(" btn_color")">
+                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" title='@Html.Localize("btn_color")'>
                         <i class="fa fa-reorder"></i>
                     </button>
                     <ul class="dropdown-menu" role="menu">
