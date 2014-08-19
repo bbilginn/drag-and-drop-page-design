@@ -4,6 +4,15 @@
     <title>...</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <style>
+        table tr td {
+            border: 2px dashed #ddd !important;
+        }
+
+        .panel table tr td {
+            border: 2px dashed #eee !important;
+        }
+    </style>
 </head>
 <body class="container">
 
@@ -70,7 +79,6 @@
             <td>C</td>
         </tr>
     </table>-->
-
     <!--<table class="table table-bordered">
         <tr>
             <th><input type="text" class="form-control customField" /></th>
@@ -81,23 +89,27 @@
 
 
 
-    <div>
+    <div id="PageLayout">
 
     </div>
 
-
+    <!--Kýlavuz panel-->
     <div class="panel hidden">
         <div class="panel-heading">Panel heading without title</div>
         <div class="panel-body">
             <table class="table table-bordered"></table>
         </div>
     </div>
+    <!--Kýlavuz panel-->
 
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script>
 
+
+
+
+    <script>
         var sections = [
             { Id: 1, Name: 'Section-1', RowOrder: 1, Colspan: 1, Rowspan: 1, Color: 'panel-success', RowCount: 1, Fields: [] },
             { Id: 2, Name: 'Section-2', RowOrder: 1, Colspan: 1, Rowspan: 1, Color: 'panel-info', RowCount: 1, Fields: [] },
@@ -133,10 +145,10 @@
                                 $.each(this.Fields, function () {
                                     if (this.RowOrder == j + 1) {
                                         var input = $('<input type="text" class="form-control">');
-                                        var td = $('<td/>')
-                                            .attr('colspan', this.Colspan)
-                                            .attr('rowspan', this.Rowspan)
-                                            .append(input);
+                                        var td = $('<td/>', {
+                                            colspan: this.Colspan,
+                                            rowspan: this.Rowspan
+                                        }).append(input);
 
                                         pTr.append(td);
                                     }
@@ -145,10 +157,10 @@
                             }
                         }
 
-                        tr.append($('<td/>')
-                            .attr('colspan', this.Colspan)
-                            .attr('rowspan', this.Rowspan)
-                            .append(panel));
+                        tr.append($('<td/>', {
+                            colspan: this.Colspan,
+                            rowspan: this.Rowspan
+                        }).append(panel));
 
                     }
                 });
@@ -156,7 +168,7 @@
                 table.append(tr);
             }
 
-            $("div").append(table);
+            $("#PageLayout").append(table);
         });
     </script>
 </body>
