@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <style>
-        table tr td {
+        .table-layout tr td {
             border: 2px dashed #ddd !important;
         }
 
@@ -115,6 +115,47 @@
     <div class="panel hidden">
         <div class="panel-heading">
             <span><i class="fa fa-edit contenteditable" style="cursor: pointer"></i> <span contenteditable="false">Panel primary</span></span>
+            <div class="pull-right">
+                <!--<a class="btn btn-xs btn-default move-cursor"><i class="fa fa-arrows"></i></a>-->
+                <button type="button" class="btn btn-xs btn-default panel-toggle" title="@Html.Localize(" btn_toggle")">
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" title="@Html.Localize(" btn_color")">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="bg-gray" data-color="default">
+                            <a>&nbsp;</a>
+                        </li>
+                        <li class="bg-danger" data-color="danger">
+                            <a>&nbsp;</a>
+                        </li>
+                        <li class="bg-success" data-color="success">
+                            <a>&nbsp;</a>
+                        </li>
+                        <li class="bg-info" data-color="info">
+                            <a>&nbsp;</a>
+                        </li>
+                        <li class="bg-warning" data-color="warning">
+                            <a>&nbsp;</a>
+                        </li>
+                        <li class="bg-primary" data-color="primary">
+                            <a>&nbsp;</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" title="@Html.Localize(" btn_color")">
+                        <i class="fa fa-reorder"></i>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li style="height: 222px; width: 222px">
+                            ss
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="panel-body">
             <table class="table table-bordered"></table>
@@ -147,7 +188,7 @@
 
 
         $(function () {
-            var table = $('<table class="table table-bordered" />');
+            var table = $('<table class="table table-bordered table-layout" />');
 
             for (var i = 0; i < layout.RowCount; i++) {
                 var tr = $('<tr/>');
@@ -189,6 +230,28 @@
             }
 
             $("#PageLayout").append(table);
+        });
+
+
+
+
+
+
+
+
+
+        // Panel color setting
+        $('body').on('click', '[data-color]', function () {
+            var panel = $(this).closest('.panel');
+            var color = $(this).data('color');
+            panel.removeClass().addClass('panel').addClass('panel-' + color).attr('data-panelcolor', color);
+            //eventChangeData();
+        });
+
+        // Panel slide toggle effect
+        $('body').on('click', '.panel-toggle', function () {
+            var panelBlock = $(this).closest('.panel').children('.panel-body');
+            panelBlock.slideToggle();
         });
 
         //contenteditable
