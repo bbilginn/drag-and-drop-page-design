@@ -30,6 +30,36 @@
         [contenteditable="true"]:hover {
             outline: 2px dashed #0090D2;
         }
+
+        .SizeChooser {
+            margin: 5px 10px;
+            position: relative;
+            text-align: center
+        }
+
+            .SizeChooser table {
+                border-collapse: separate;
+                border-spacing: 3px;
+            }
+
+            .SizeChooser td {
+                cursor: pointer;
+                border: 1px solid #CCC;
+                height: 10px;
+                min-width: 10px;
+                line-height: 10px;
+            }
+
+        .SizeChooser-hover {
+            background-color: red;
+        }
+
+        .SizeChooser-selected {
+            border: 1px #333 solid !important;
+        }
+        .SizeChooser input {
+            width: 30px;
+        }
     </style>
 </head>
 <body class="container">
@@ -151,7 +181,7 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li style="height: 222px; width: 222px">
-                            ss
+                            <div class="table_size_chooser"><div class="SizeChooser"><table><tbody><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr></tbody></table><input><span> x </span><input></div></div>
                         </li>
                     </ul>
                 </div>
