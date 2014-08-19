@@ -229,7 +229,7 @@
                         var panel = $('.panel').clone()
                             .removeClass('hidden')
                             .addClass(this.Color);
-                        panel.find('.panel-heading span [contenteditable]').html(this.Name);
+                        panel.find('.panel-heading span [contenteditable]').attr('data-name', this.Name).html(this.Name);
 
                         if (this.Fields.length > 0) {
                             for (var j = 0; j < this.RowCount; j++) {
@@ -298,6 +298,11 @@
             //eventChangeData();
             var item = $(this);
             if (e.keyCode === 13) {
+                item.blur();
+                return false;
+            }
+            if (e.keyCode == 27) {
+                item.html(item.data('name'));
                 item.blur();
                 return false;
             }
