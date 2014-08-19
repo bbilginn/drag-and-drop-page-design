@@ -5,37 +5,77 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
-<body class="container-fluid">
+<body class="container">
 
-
-
-    <td>
-        <div class="panel panel-default">
-            <div class="panel-heading">Panel heading without title</div>
-            <div class="panel-body">
-                Panel content
-            </div>
-        </div>
-    </td>
-
-
+    <br />
+    <br />
+    <br />
 
     <table class="table table-bordered">
         <tr>
-            <td>CC</td>
-            <td>BB</td>
-            <td>AA</td>
-            <td>BB</td>
-            <td>
-                <div class="panel panel-default">
-                    <div class="panel-heading">Panel heading without title</div>
-                    <div class="panel-body">
-                        Panel content
-                    </div>
-                </div>
-            </td>
+            <td rowspan="2">A</td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td>C</td>
         </tr>
     </table>
+
+    <hr style="border-color: red" />
+
+    <table class="table table-bordered">
+        <tr>
+            <td colspan="5" rowspan="6">A</td>
+            <td colspan="4" rowspan="3">B</td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+            <td colspan="4" rowspan="3">C</td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+    </table>
+
+    <hr style="border-color: red" />
+
+    <table class="table table-bordered">
+        <tr>
+            <td>A</td>
+            <td>A</td>
+            <td>A</td>
+        </tr>
+    </table>
+
+    <hr style="border-color: red" />
+
+    <table class="table table-bordered">
+        <tr>
+            <td>B</td>
+            <td>B</td>
+            <td>B</td>
+            <td>B</td>
+        </tr>
+    </table>
+
+    <hr style="border-color: red" />
+
+    <table class="table table-bordered">
+        <tr>
+            <td colspan="5" rowspan="2">A</td>
+            <td>C</td>
+            <td colspan="2" rowspan="2">A</td>
+        </tr>
+        <tr>
+            <td>C</td>
+        </tr>
+    </table>
+
+
+
+
+
+
 
 
 
