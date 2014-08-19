@@ -12,6 +12,24 @@
         .panel table tr td {
             border: 2px dashed #eee !important;
         }
+
+        [contenteditable="true"]:active,
+        [contenteditable="true"]:focus {
+            padding: 5px 15px;
+            font-size: 15px;
+            line-height: 1.42857;
+            color: #2C3E50;
+            background-color: #FFF;
+            background-image: none;
+            border: 1px solid #DCE4EC;
+            border-radius: 4px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+            transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        }
+
+        [contenteditable="true"]:hover {
+            outline: 2px dashed #0090D2;
+        }
     </style>
 </head>
 <body class="container">
@@ -95,7 +113,9 @@
 
     <!--Kýlavuz panel-->
     <div class="panel hidden">
-        <div class="panel-heading">Panel heading without title</div>
+        <div class="panel-heading">
+            <span><i class="fa fa-edit contenteditable" style="cursor: pointer"></i> <span contenteditable="false">Panel primary</span></span>
+        </div>
         <div class="panel-body">
             <table class="table table-bordered"></table>
         </div>
@@ -137,7 +157,7 @@
                         var panel = $('.panel').clone()
                             .removeClass('hidden')
                             .addClass(this.Color);
-                        panel.children('.panel-heading').html(this.Name);
+                        panel.find('.panel-heading span [contenteditable]').html(this.Name);
 
                         if (this.Fields.length > 0) {
                             for (var j = 0; j < this.RowCount; j++) {
@@ -169,6 +189,24 @@
             }
 
             $("#PageLayout").append(table);
+        });
+
+        //contenteditable
+        $('body').on('click', '.contenteditable', function () {
+            var span = $(this).closest('span');
+            var contentEditable = span.children('[contenteditable]');
+            contentEditable.attr('contenteditable', true).focus();
+            contentEditable.blur(function () {
+                $(this).attr('contenteditable', false);
+            });
+        });
+        $('body').on('keydown', '[contenteditable="true"]', function (e) {
+            //eventChangeData();
+            var item = $(this);
+            if (e.keyCode === 13) {
+                item.blur();
+                return false;
+            }
         });
     </script>
 </body>
