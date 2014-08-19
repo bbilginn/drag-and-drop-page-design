@@ -295,14 +295,16 @@
             });
         });
         $('body').on('keydown', '[contenteditable="true"]', function (e) {
-            //eventChangeData();
             var item = $(this);
-            if (e.keyCode === 13) {
+
+            if (e.keyCode === 27) {
+                item.html(item.data('name'));
                 item.blur();
                 return false;
+            } else {
+                //eventChangeData();
             }
-            if (e.keyCode == 27) {
-                item.html(item.data('name'));
+            if (e.keyCode === 13) {
                 item.blur();
                 return false;
             }
