@@ -31,15 +31,12 @@ $(function () {
         rows = parseInt($("#rows").val(), 10); if (isInt(cols)) if (isInt(rows)) {
             $("#tableWrap").empty().append('<table class="table-layout table table-bordered">');
             for (var a = 1; a <= rows; a++) {
-                $("table").append("<tr></tr>"); $generatedRow = $("tr").eq(a - 1);
+                $("#tableWrap table").append("<tr></tr>");
+                $generatedRow = $("#tableWrap tr").eq(a - 1);
                 for (var e = 1; e <= cols; e++) {
                     $generatedRow.append("<td class='c" + (e - 1) + " r" + (a - 1) + "' colspan='1' rowspan='1'>")
                 }
             }
-
-            //$(".table-layout td").append($('.panel.hidden').clone()
-            //       .removeClass('hidden').addClass("panel-default"));
-
             exportHTML();
         } else alert("Invalid row input"); else alert("Invalid column input")
     });
@@ -48,9 +45,27 @@ $(function () {
 });
 
 function selectCells(a, e) {
-    for (var b = getCellCols(a), c = getCellRows(a), g = getCellCols(e), f = getCellRows(e), i = b.length, j = c.length, h = g.length, o = f.length, k = 100, l = 0, m = 100, n = 0, d = 0; d < i; d++) b[d] < k && (k = b[d]), b[d] > l && (l = b[d]); for (d = 0; d < h; d++) g[d] < k && (k = g[d]), g[d] > l && (l = g[d]); for (d = 0; d < j; d++) c[d] < m && (m = c[d]), c[d] > n && (n = c[d]); for (d = 0; d < o; d++) f[d] < m && (m = f[d]), f[d] > n && (n = f[d]); for (d = m; d <= n; d++) for (c = k; c <= l; c++) $(".c" + c).filter(".r" + d).addClass("s"); do {
+    for (var b = getCellCols(a), c = getCellRows(a), g = getCellCols(e), f = getCellRows(e), i = b.length, j = c.length, h = g.length, o = f.length, k = 100, l = 0, m = 100, n = 0, d = 0; d < i; d++) b[d] < k && (k = b[d]), b[d] > l && (l = b[d]);
+    for (d = 0; d < h; d++) g[d] < k && (k = g[d]), g[d] > l && (l = g[d]);
+    for (d = 0; d < j; d++) c[d] < m && (m = c[d]), c[d] > n && (n = c[d]);
+    for (d = 0; d < o; d++) f[d] < m && (m = f[d]), f[d] > n && (n = f[d]);
+    for (d = m; d <= n; d++) for (c = k; c <= l; c++) $(".c" + c).filter(".r" + d).addClass("s");
+    do {
         b = !1; f = $(".s"); i = f.size(); g = []; c = []; for (d = 0; d < i; d++) g = g.concat(getCellCols(f.eq(d))),
-        c = c.concat(getCellRows(f.eq(d))); d = Math.max.apply(Math, g); g = Math.min.apply(Math, g); f = Math.max.apply(Math, c); c = Math.min.apply(Math, c); d > l && (l = d, b = !0); g < k && (k = g, b = !0); f > n && (n = f, b = !0); c < m && (m = c, b = !0); if (b) for (d = m; d <= n; d++) for (c = k; c <= l; c++) $(".c" + c).filter(".r" + d).addClass("s"); else selectedColspan = l - k + 1, selectedRowspan = n - m + 1
+        c = c.concat(getCellRows(f.eq(d)));
+        d = Math.max.apply(Math, g);
+        g = Math.min.apply(Math, g);
+        f = Math.max.apply(Math, c);
+        c = Math.min.apply(Math, c);
+        d > l && (l = d, b = !0);
+        g < k && (k = g, b = !0);
+        f > n && (n = f, b = !0);
+        c < m && (m = c, b = !0);
+        if (b) {
+            for (d = m; d <= n; d++) for (c = k; c <= l; c++) $(".c" + c).filter(".r" + d).addClass("s");
+        } else {
+            selectedColspan = l - k + 1, selectedRowspan = n - m + 1
+        }
     } while (b)
 }
 
