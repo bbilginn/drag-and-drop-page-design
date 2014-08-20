@@ -84,7 +84,7 @@
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li style="height: 242px; width: 220px">
-                    <div class="SizeChooser">
+                    <div class="SizeChooser" data-id="PageLayout">
                         <table><tbody><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr></tbody></table>
                         <input class="input-sm"><span> x </span><input class="input-sm">
                         <button class="btn btn-sm">Generate</button>
@@ -215,6 +215,7 @@
                                         pTr.append(td);
                                     }
                                 });
+                                panel.find('.panel-body').attr('id', i); // benzersiz id
                                 panel.find('.panel-body table').append(pTr);
                             }
                         }
@@ -248,8 +249,8 @@
             });
 
             tds.mouseover(function () {
-                var trIndex = $(this).closest('tr').data('index');
-                var tdIndex = $(this).data('index');
+                var trIndex = $(this).closest('tr').data('index'),
+                    tdIndex = $(this).data('index');
 
                 var inputs = $(this).closest('.SizeChooser').find('.input-sm');
                 inputs.eq(0).val(trIndex);
@@ -265,6 +266,9 @@
             });
 
             $('body').on('click', 'td.bg-info[data-index]', function () {
+                var trIndex = $(this).closest('tr').data('index'),
+                    tdIndex = $(this).data('index'),
+                    table = $('#' + $(this).closest('.SizeChooser').data('id')).children('table');
 
             });
         });
