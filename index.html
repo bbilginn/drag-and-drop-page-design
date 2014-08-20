@@ -6,7 +6,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <style>
         .table-layout tr td {
-            border: 1px dashed #ddd !important;
+            /*border: 1px dashed #ddd !important;*/
             padding: 15px;
         }
 
@@ -46,10 +46,11 @@
 
             .SizeChooser td {
                 cursor: pointer;
-                border: 1px solid #CCC;
                 height: 10px;
                 min-width: 10px;
                 line-height: 10px;
+                border: 1px solid #CCC !important;
+                padding: 0 !important;
             }
 
         .SizeChooser-hover {
@@ -88,14 +89,19 @@
     <br />
     <br />
 
-    <div id="PageLayout">
+    <div class="well text-center">
+        <button id="addRow" class="btn btn-default">Add row</button>
+        <button id="addCol" class="btn btn-default">Add col</button>
+    </div>
+
+    <div class="row" id="PageLayout">
 
     </div>
 
     <!--Kýlavuz panel-->
     <div class="panel hidden">
         <div class="panel-heading">
-            <span><i class="fa fa-edit contenteditable" style="cursor: pointer"></i> <span contenteditable="false">Panel primary</span></span>
+            <span><i class="fa fa-edit contenteditable" style="cursor: pointer"></i> <span contenteditable="false">New panel</span></span>
             <div class="pull-right">
                 <!--<a class="btn btn-xs btn-default move-cursor"><i class="fa fa-arrows"></i></a>-->
                 <button type="button" class="btn btn-xs btn-default panel-toggle" title='@Html.Localize("btn_toggle")'>
@@ -155,15 +161,27 @@
 
     <script>
         var sections = [
-            { Id: 1, Name: 'Section-1', RowOrder: 1, Colspan: 1, Rowspan: 1, Color: 'panel-success', RowCount: 1, Fields: [] },
-            { Id: 2, Name: 'Section-2', RowOrder: 1, Colspan: 1, Rowspan: 1, Color: 'panel-info', RowCount: 1, Fields: [] },
+            {
+                Id: 1, Name: 'Section-1', RowOrder: 1, Colspan: 1, Rowspan: 1, Color: 'panel-success', RowCount: 2,
+                Fields: [
+                    { FieldId: 1, Name: 'isim', RowOrder: 1, Colspan: 1, Rowspan: 1 },
+                    { FieldId: 2, Name: 'soyisim', RowOrder: 1, Colspan: 1, Rowspan: 1 },
+                    { FieldId: 3, Name: 'il', RowOrder: 2, Colspan: 2, Rowspan: 1 }]
+            },
+            {
+                Id: 2, Name: 'Section-2', RowOrder: 1, Colspan: 1, Rowspan: 1, Color: 'panel-info', RowCount: 2,
+                Fields: [
+                    { FieldId: 1, Name: 'isim', RowOrder: 1, Colspan: 1, Rowspan: 1 },
+                    { FieldId: 1, Name: 'soyisim', RowOrder: 2, Colspan: 1, Rowspan: 1 }]
+            },
             {
                 Id: 3, Name: 'Section-3', RowOrder: 2, Colspan: 2, Rowspan: 1, Color: 'panel-danger', RowCount: 2,
-                Fields: [{ Id: 1, Name: 'isim', RowOrder: 1, Colspan: 1, Rowspan: 1 },
-                { FieldId: 2, Name: 'soyisim', RowOrder: 1, Colspan: 1, Rowspan: 1 },
-                { FieldId: 3, Name: 'email', RowOrder: 1, Colspan: 1, Rowspan: 1 },
-                { FieldId: 4, Name: 'il', RowOrder: 2, Colspan: 2, Rowspan: 1 },
-                { FieldId: 5, Name: 'ilçe', RowOrder: 2, Colspan: 1, Rowspan: 1 }]
+                Fields: [
+                    { FieldId: 1, Name: 'isim', RowOrder: 1, Colspan: 1, Rowspan: 1 },
+                    { FieldId: 2, Name: 'soyisim', RowOrder: 1, Colspan: 1, Rowspan: 1 },
+                    { FieldId: 3, Name: 'email', RowOrder: 1, Colspan: 1, Rowspan: 1 },
+                    { FieldId: 4, Name: 'il', RowOrder: 2, Colspan: 2, Rowspan: 1 },
+                    { FieldId: 5, Name: 'ilçe', RowOrder: 2, Colspan: 1, Rowspan: 1 }]
             }
         ];
 
@@ -178,12 +196,13 @@
 
                 $.each(layout.Sections, function () {
                     if (this.RowOrder == i + 1) {
-                        var panel = $('.panel').clone()
+                        var panel = $('.panel.hidden').clone()
                             .removeClass('hidden')
                             .addClass(this.Color);
                         panel.find('.panel-heading span [contenteditable]').attr('data-name', this.Name).html(this.Name);
 
                         if (this.Fields.length > 0) {
+                            panel.find('.panel-body table').empty();
                             for (var j = 0; j < this.RowCount; j++) {
                                 var pTr = $('<tr/>');
                                 $.each(this.Fields, function () {
@@ -192,8 +211,7 @@
                                         var td = $('<td/>', {
                                             colspan: this.Colspan,
                                             rowspan: this.Rowspan
-                                        }).append(input);
-
+                                        }).append(this.Name);
                                         pTr.append(td);
                                     }
                                 });

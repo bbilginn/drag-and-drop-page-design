@@ -32,8 +32,14 @@ $(function () {
             $("#tableWrap").empty().append('<table class="table-layout table table-bordered">');
             for (var a = 1; a <= rows; a++) {
                 $("table").append("<tr></tr>"); $generatedRow = $("tr").eq(a - 1);
-                for (var e = 1; e <= cols; e++) $generatedRow.append("<td class='c" + (e - 1) + " r" + (a - 1) + "' colspan='1' rowspan='1'>")
+                for (var e = 1; e <= cols; e++) {
+                    $generatedRow.append("<td class='c" + (e - 1) + " r" + (a - 1) + "' colspan='1' rowspan='1'>")
+                }
             }
+
+            //$(".table-layout td").append($('.panel.hidden').clone()
+            //       .removeClass('hidden').addClass("panel-default"));
+
             exportHTML();
         } else alert("Invalid row input"); else alert("Invalid column input")
     });
