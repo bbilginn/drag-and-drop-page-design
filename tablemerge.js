@@ -49,17 +49,16 @@ function selectCells(a, e) {
 }
 
 $(function () {
-    $("td").on("mousedown",
-        function (a) {
-            1 === a.which && (RemoveSelection(), isMouseDown = !0, mouseDownCell = this)
-        });
-    $("td").on("mousemove", function () {
+    $('body').on('mousedown', 'td', function (a) {
+        1 === a.which && (RemoveSelection(), isMouseDown = !0, mouseDownCell = this)
+    });
+    $('body').on('mousemove', 'td', function () {
         isMouseDown && mouseDownCell != this && (isDraggedBetweenCells = !0, RemoveSelection(), $(".s").removeClass("s"), selectCells(mouseDownCell, this))
     });
     $(document).on("mouseup", function () {
         isMouseDown && (isMouseDown = !1, mouseDownCell = void 0, isDraggedBetweenCells = !1)
     });
-    $("#tableWrap").on("mousedown", function (a) { 1 === a.which && $(".s").removeClass("s") })
+    $('body').on('mousedown', '#tableWrap', function (a) { 1 === a.which && $(".s").removeClass("s") })
 });
 
 function getLowestCol(a) { a = getCellCols(a); return Math.min.apply(Math, a) }
