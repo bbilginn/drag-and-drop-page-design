@@ -62,12 +62,8 @@
         }
 
         .SizeChooser input {
-            width: 30px;
+            width: 40px;
         }
-
-        /*.s {
-            background: #d0eaf9;
-        }*/
 
         .ui-selecting {
             background: blue;
@@ -79,27 +75,23 @@
     </style>
 </head>
 <body class="container">
-
-    <!--<div>
-        <input type="button" id="generate" value="Generate" />
-        Rows:<input id="rows" type="text" value="2" maxlength="2" />
-        Cols:<input id="cols" type="text" value="2" maxlength="2" />
-        <br />
-        <input type="button" id="merge" value="Merge" />
-        <br />
-    </div>
-
-    <div id="tableWrap">
-    </div>-->
-
-
-    <br />
-    <br />
     <br />
 
     <div class="well text-center">
-        <button id="addRow" class="btn btn-default">Add row</button>
-        <button id="addCol" class="btn btn-default">Add col</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" title='@Html.Localize("btn_color")'>
+                <i class="fa fa-table fa-2x"></i>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li style="height: 242px; width: 220px">
+                    <div class="SizeChooser">
+                        <table><tbody><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr></tbody></table>
+                        <input class="input-sm"><span> x </span><input class="input-sm">
+                        <button class="btn btn-sm">Generate</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="row" id="PageLayout">
@@ -142,11 +134,15 @@
                 </div>
                 <div class="btn-group">
                     <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" title='@Html.Localize("btn_color")'>
-                        <i class="fa fa-reorder"></i>
+                        <i class="fa fa-table"></i>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li style="height: 242px; width: 220px">
-                            <div class="table_size_chooser"><div class="SizeChooser"><table><tbody><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr><tr><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td><td class=""> </td></tr></tbody></table><input><span> x </span><input></div></div>
+                            <div class="SizeChooser">
+                                <table><tbody><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr><tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr></tbody></table>
+                                <input class="input-sm"><span> x </span><input class="input-sm">
+                                <button class="btn btn-sm">Generate</button>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -226,7 +222,8 @@
                         tr.append($('<td/>', {
                             colspan: this.Colspan,
                             rowspan: this.Rowspan
-                        }).append(panel));
+                            //}).append(panel));
+                        }).append(''));
 
                     }
                 });
@@ -237,6 +234,37 @@
         });
     </script>
 
+    <script>
+        $(function () {
+            var trs = $('.SizeChooser table tr'),
+                tds = $('.SizeChooser table td');
+
+            trs.each(function (i) {
+                var $tr = $(this);
+                $tr.attr('data-index', i);
+                $tr.find('td').each(function (j) {
+                    $(this).attr('data-index', j);
+                });
+            });
+
+            tds.mouseover(function () {
+                var trIndex = $(this).closest('tr').data('index');
+                var tdIndex = $(this).data('index');
+
+                var inputs = $(this).closest('.SizeChooser').find('.input-sm');
+                inputs.eq(0).val(trIndex + 1);
+                inputs.eq(1).val(tdIndex + 1);
+
+                tds.removeClass('bg-info');
+                tds.each(function () {
+                    var $td = $(this);
+                    if ($td.closest('tr').data('index') < trIndex + 1 && $td.data('index') < tdIndex + 1) {
+                        $td.addClass('bg-info');
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         $(function () {
