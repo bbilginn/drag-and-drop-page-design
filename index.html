@@ -241,9 +241,9 @@
 
             trs.each(function (i) {
                 var $tr = $(this);
-                $tr.attr('data-index', i);
+                $tr.attr('data-index', i + 1);
                 $tr.find('td').each(function (j) {
-                    $(this).attr('data-index', j);
+                    $(this).attr('data-index', j + 1);
                 });
             });
 
@@ -252,8 +252,8 @@
                 var tdIndex = $(this).data('index');
 
                 var inputs = $(this).closest('.SizeChooser').find('.input-sm');
-                inputs.eq(0).val(trIndex + 1);
-                inputs.eq(1).val(tdIndex + 1);
+                inputs.eq(0).val(trIndex);
+                inputs.eq(1).val(tdIndex);
 
                 tds.removeClass('bg-info');
                 tds.each(function () {
@@ -263,12 +263,16 @@
                     }
                 });
             });
+
+            $('body').on('click', 'td.bg-info[data-index]', function () {
+
+            });
         });
     </script>
 
     <script>
         $(function () {
-            $('table').selectable({
+            $('table.table-layout, table.table-panel').selectable({
                 filter: "td.empty",
                 selecting: function (event, ui) {
                     var td = $(ui.selecting);
