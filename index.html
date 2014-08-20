@@ -65,14 +65,22 @@
             width: 30px;
         }
 
-        .s {
+        /*.s {
             background: #d0eaf9;
+        }*/
+
+        .ui-selecting {
+            background: blue;
+        }
+
+        .ui-selected {
+            background: green;
         }
     </style>
 </head>
 <body class="container">
 
-    <div>
+    <!--<div>
         <input type="button" id="generate" value="Generate" />
         Rows:<input id="rows" type="text" value="2" maxlength="2" />
         Cols:<input id="cols" type="text" value="2" maxlength="2" />
@@ -82,7 +90,7 @@
     </div>
 
     <div id="tableWrap">
-    </div>
+    </div>-->
 
 
     <br />
@@ -154,8 +162,8 @@
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-
-
+    <!--<script src="tablemerge.js"></script>-->
+    <script src="panelhelper.js"></script>
 
     <script>
         var sections = [
@@ -229,7 +237,24 @@
         });
     </script>
 
-    <script src="tablemerge.js"></script>
-    <script src="panelhelper.js"></script>
+
+    <script>
+        $(function () {
+            $('table').selectable({
+                filter: "td.empty",
+                selecting: function (event, ui) {
+                    var td = $(ui.selecting);
+
+                    if (td.closest('table').hasClass('table-layout')) {
+                        console.log('table-layout');
+                    } else {
+                        console.log('table-panel');
+                    }
+
+                    console.log(td);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
