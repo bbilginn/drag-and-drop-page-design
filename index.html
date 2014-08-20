@@ -161,6 +161,7 @@
     <!--<script src="tablemerge.js"></script>-->
     <script src="panelhelper.js"></script>
 
+    <!--data showing in view-->
     <script>
         var sections = [
             {
@@ -216,6 +217,7 @@
                                     }
                                 });
                                 panel.find('.panel-body').attr('id', i); // benzersiz id
+                                panel.find('.panel-heading .SizeChooser').attr('data-id', i); // benzersiz id
                                 panel.find('.panel-body table').append(pTr);
                             }
                         }
@@ -223,8 +225,8 @@
                         tr.append($('<td/>', {
                             colspan: this.Colspan,
                             rowspan: this.Rowspan
-                            //}).append(panel));
-                        }).append(''));
+                        }).append(panel));
+                        //}).append(''));
 
                     }
                 });
@@ -235,33 +237,38 @@
         });
     </script>
 
+    <!--table generator-->
     <script>
         $(function () {
-            var trs = $('.SizeChooser table tr'),
-                tds = $('.SizeChooser table td');
 
-            trs.each(function (i) {
-                var $tr = $(this);
-                $tr.attr('data-index', i + 1);
-                $tr.find('td').each(function (j) {
-                    $(this).attr('data-index', j + 1);
+            var sizeChooser = $('.SizeChooser');
+            sizeChooser.each(function () {
+                var trs = $(this).find('table tr'),
+                    tds = $(this).find('table td');
+
+                trs.each(function (i) {
+                    var $tr = $(this);
+                    $tr.attr('data-index', i + 1);
+                    $tr.find('td').each(function (j) {
+                        $(this).attr('data-index', j + 1);
+                    });
                 });
-            });
 
-            tds.mouseover(function () {
-                var trIndex = $(this).closest('tr').data('index'),
-                    tdIndex = $(this).data('index');
+                tds.mouseover(function () {
+                    var trIndex = $(this).closest('tr').data('index'),
+                        tdIndex = $(this).data('index');
 
-                var inputs = $(this).closest('.SizeChooser').find('.input-sm');
-                inputs.eq(0).val(trIndex);
-                inputs.eq(1).val(tdIndex);
+                    var inputs = $(this).closest('.SizeChooser').find('.input-sm');
+                    inputs.eq(0).val(trIndex);
+                    inputs.eq(1).val(tdIndex);
 
-                tds.removeClass('bg-info');
-                tds.each(function () {
-                    var $td = $(this);
-                    if ($td.closest('tr').data('index') < trIndex + 1 && $td.data('index') < tdIndex + 1) {
-                        $td.addClass('bg-info');
-                    }
+                    tds.removeClass('bg-info');
+                    tds.each(function () {
+                        var $td = $(this);
+                        if ($td.closest('tr').data('index') < trIndex + 1 && $td.data('index') < tdIndex + 1) {
+                            $td.addClass('bg-info');
+                        }
+                    });
                 });
             });
 
@@ -274,6 +281,8 @@
         });
     </script>
 
+    
+    <!--only empty cell selectable-->
     <script>
         $(function () {
             $('table.table-layout, table.table-panel').selectable({
