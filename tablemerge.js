@@ -29,7 +29,7 @@ $(function () {
     $("#generate").on("click", function () {
         cols = parseInt($("#cols").val(), 10);
         rows = parseInt($("#rows").val(), 10); if (isInt(cols)) if (isInt(rows)) {
-            $("#tableWrap").empty().append("<table>");
+            $("#tableWrap").empty().append('<table class="table-layout table table-bordered">');
             for (var a = 1; a <= rows; a++) {
                 $("table").append("<tr></tr>"); $generatedRow = $("tr").eq(a - 1);
                 for (var e = 1; e <= cols; e++) $generatedRow.append("<td class='c" + (e - 1) + " r" + (a - 1) + "' colspan='1' rowspan='1'>")

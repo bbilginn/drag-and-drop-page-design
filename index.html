@@ -6,11 +6,12 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <style>
         .table-layout tr td {
-            border: 2px dashed #ddd !important;
+            border: 1px dashed #ddd !important;
+            padding: 15px;
         }
 
-        .panel .panel-body table tr td {
-            border: 2px dashed #eee !important;
+        .table-panel tr td {
+            border: 1px dashed #eee !important;
             padding: 15px;
         }
 
@@ -63,29 +64,8 @@
             width: 30px;
         }
 
-        #tableWrap table, td {
-            border: solid 1px black;
-        }
-
-        #tableWrap table {
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-
-        #tableWrap td {
-            padding: 8px;
-        }
-
         .s {
             background: #d0eaf9;
-        }
-
-        #rows, #cols {
-            width: 20px;
-        }
-
-        #tableWrap {
-            padding: 10px;
         }
     </style>
 </head>
@@ -159,7 +139,7 @@
             </div>
         </div>
         <div class="panel-body">
-            <table class="table table-bordered"></table>
+            <table class="table-panel table table-bordered"></table>
         </div>
     </div>
     <!--Kýlavuz panel-->
