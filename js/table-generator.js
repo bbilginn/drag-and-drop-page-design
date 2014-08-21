@@ -35,7 +35,7 @@ $(function () {
 
 $('body').on('click', 'td[data-index] button', function () {
     var trIndex = $(this).closest('tr').data('index'), tdIndex = $(this).parent().data('index'),
-        tableId = '#' + $(this).closest('.SizeChooser').data('id'),
+        tableId = '#' + $(this).closest('.tools').data('id'),
         table = $(tableId + ' > table'), trs = $(tableId + ' > table > tbody > tr'),
         trOrder, tdMaxCount = 0, newTrCount = (trIndex - trs.length), newTdCount;
 

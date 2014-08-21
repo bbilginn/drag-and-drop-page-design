@@ -52,7 +52,7 @@ $(function () {
                             }
                         });
                         panel.find('.panel-body').attr('id', i); // benzersiz id
-                        panel.find('.panel-heading .SizeChooser').attr('data-id', i); // benzersiz id
+                        panel.find('.tools').attr('data-id', i); // benzersiz id
                         panel.find('.panel-body table').append(pTr);
                     }
                 }
