@@ -281,24 +281,31 @@
         });
 
         $('body').on('click', 'td.bg-info[data-index]', function () {
-            var trIndex = $(this).closest('tr').data('index'),
-                tdIndex = $(this).data('index'),
-                table = $('#' + $(this).closest('.SizeChooser').data('id') + ' > table'),
-                trs = $('#' + $(this).closest('.SizeChooser').data('id') + ' > table > tbody > tr');
+            var trIndex = $(this).closest('tr').data('index'), tdIndex = $(this).data('index'),
+                tableId = '#' + $(this).closest('.SizeChooser').data('id'),
+                table = $(tableId + ' > table'), trs = $(tableId + ' > table > tbody > tr'),
+                x = 0, trOrder, newTrCount = (trIndex - trs.length);
 
-            var x = 0;
-            trs.each(function () {
-                var $tr = $(this),
-                    $tdLen = $tr.children('td').length;
-                if ($tdLen > x) {
-                    x = $tdLen;
+            for (trOrder = 0; trOrder < newTrCount ; trOrder++) {
+                trs.each(function () {
+                    var $tr = $(this),
+                        $tdLen = $tr.children('td').length;
+                    if ($tdLen > x) {
+                        x = $tdLen;
+                    }
+                });
+                var tr = $('<tr/>');
+                for (var i = 0; i < x; i++) {
+                    tr.append($('<td/>', { colspan: 1, rowspan: 1, 'class': 'empty' }));
                 }
-            });
-            var tr = $('<tr/>');
-            for (var i = 0; i < x; i++) {
-                tr.append($('<td/>', { colspan: 1, rowspan: 1, 'class': 'empty' }));
+                table.append(tr);
             }
-            table.append(tr);
+
+            if (newTrCount < 0) //seçin dýþý kalan tr siler
+                for (trOrder = 0; trOrder < Math.abs(newTrCount) ; trOrder++) {
+                    $(tableId + ' > table > tbody > tr').last().remove();
+                }
+
         });
     </script>
 
