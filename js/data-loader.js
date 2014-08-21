@@ -61,7 +61,6 @@ $(function () {
                     colspan: this.Colspan,
                     rowspan: this.Rowspan
                 }).append(panel));
-                //}).append(''));
 
             }
         });
