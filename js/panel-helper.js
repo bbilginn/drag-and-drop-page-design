@@ -21,6 +21,7 @@ $('body').on('click', '.contenteditable', function () {
         $(this).attr('contenteditable', false);
     });
 });
+
 $('body').on('keydown', '[contenteditable="true"]', function (e) {
     var item = $(this);
 

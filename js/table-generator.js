@@ -3,7 +3,8 @@ $(function () {
     var sizeChooser = $('.SizeChooser');
     sizeChooser.each(function () {
         var trs = $(this).find('table tr'),
-            tds = $(this).find('table td');
+            tds = $(this).find('table td'),
+            buttons = $(this).find('table td button');
 
         trs.each(function (i) {
             var $tr = $(this);
@@ -17,23 +18,23 @@ $(function () {
             var trIndex = $(this).closest('tr').data('index'),
                 tdIndex = $(this).data('index');
 
-            var inputs = $(this).closest('.SizeChooser').find('.input-sm');
-            inputs.eq(0).val(trIndex);
-            inputs.eq(1).val(tdIndex);
+            var colXrow = $(this).closest('.SizeChooser').find('.colXrow');
+            colXrow.eq(0).html(trIndex);
+            colXrow.eq(1).html(tdIndex);
 
-            tds.removeClass('bg-info');
-            tds.each(function () {
-                var $td = $(this);
-                if ($td.closest('tr').data('index') < trIndex + 1 && $td.data('index') < tdIndex + 1) {
-                    $td.addClass('bg-info');
+            buttons.removeClass('btn-info');
+            buttons.each(function () {
+                var $button = $(this);
+                if ($button.closest('tr').data('index') < trIndex + 1 && $button.parent().data('index') < tdIndex + 1) {
+                    $button.addClass('btn-info');
                 }
             });
         });
     });
 });
 
-$('body').on('click', 'td.bg-info[data-index]', function () {
-    var trIndex = $(this).closest('tr').data('index'), tdIndex = $(this).data('index'),
+$('body').on('click', 'td[data-index] button', function () {
+    var trIndex = $(this).closest('tr').data('index'), tdIndex = $(this).parent().data('index'),
         tableId = '#' + $(this).closest('.SizeChooser').data('id'),
         table = $(tableId + ' > table'), trs = $(tableId + ' > table > tbody > tr'),
         trOrder, tdMaxCount = 0, newTrCount = (trIndex - trs.length), newTdCount;
@@ -81,3 +82,5 @@ $(function () {
         }
     });
 });
+
+// seçili hüçrelerin merge edilmesi
