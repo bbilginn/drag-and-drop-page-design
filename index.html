@@ -72,6 +72,10 @@
         .ui-selected {
             background: green;
         }
+
+        td.empty {
+            padding: 30px !important;
+        }
     </style>
 </head>
 <body class="container">
@@ -92,6 +96,9 @@
                 </li>
             </ul>
         </div>
+        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" title='@Html.Localize("btn_color")'>
+            <i class="fa fa-scissors fa-2x"></i>
+        </button>
     </div>
 
     <div class="row" id="PageLayout">
@@ -275,16 +282,29 @@
             $('body').on('click', 'td.bg-info[data-index]', function () {
                 var trIndex = $(this).closest('tr').data('index'),
                     tdIndex = $(this).data('index'),
-                    table = $('#' + $(this).closest('.SizeChooser').data('id')).children('table');
+                    table = $('#' + $(this).closest('.SizeChooser').data('id') + ' > table'),
+                    trs = $('#' + $(this).closest('.SizeChooser').data('id') + ' > table > tbody > tr');
 
-                // yeni eklenen satýrdaki sütun sayýsý mevcut tablonun satýrlarýndaki en fazla sütun sayýsýna göre..
+                var x = 0;
+                trs.each(function () {
+                    var $tr = $(this),
+                        $tdLen = $tr.children('td').length;
+                    if ($tdLen > x) {
+                        x = $tdLen;
+                    }
+                });
+                var tr = $('<tr/>');
+                for (var i = 0; i < x; i++) {
+                    tr.append($('<td/>', { colspan: 1, rowspan: 1, 'class': 'empty' }));
+                }
+                table.append(tr);
 
 
             });
         });
     </script>
 
-    
+
     <!--only empty cell selectable-->
     <script>
         $(function () {
