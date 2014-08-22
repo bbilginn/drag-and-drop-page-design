@@ -9,26 +9,31 @@
 <body class="container">
     <br />
 
-    <div class="well customfieldsource">
-        <div id="XX" title="XX" class="col-md-3">
-            <div class="draggable col-lg-12 bg-primary">
-                <i class="fa fa-database"></i>
-                XX
-            </div>
+    <div id="cf_source" class="panel panel-default">
+        <div class="panel-heading">
+            @Html.Localize("free_fields")
         </div>
-        <div id="XX" title="XX" class="col-md-3">
-            <div class="draggable col-lg-12 bg-primary">
-                <i class="fa fa-database"></i>
-                XX
+        <div class="panel-body source bg-success">
+            <div id="XX" title="XX" class="col-lg-3">
+                <div class="draggable col-lg-12 bg-primary">
+                    <i class="fa fa-database"></i>
+                    XX
+                </div>
             </div>
-        </div>
-        <div id="YY" title="YY" class="col-md-3">
-            <div class="draggable col-lg-12 bg-primary">
-                <i class="fa fa-database"></i>
-                YY
+            <div id="XX" title="XX" class="col-lg-3">
+                <div class="draggable col-lg-12 bg-primary">
+                    <i class="fa fa-database"></i>
+                    XX
+                </div>
             </div>
+            <div id="YY" title="YY" class="col-lg-3">
+                <div class="draggable col-lg-12 bg-primary">
+                    <i class="fa fa-database"></i>
+                    YY
+                </div>
+            </div>
+
         </div>
-        <br />
     </div>
 
     <div class="well text-center tools" data-id="PageLayout">
@@ -121,9 +126,14 @@
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+    <script src="js/item-draggable.js"></script>
     <script src="js/data-loader.js"></script>
     <script src="js/table-generator.js"></script>
     <script src="js/panel-helper.js"></script>
-    <script src="js/item-draggable.js"></script>
+    <script>
+        $(function() {
+            draggableInit(), selectableInit();
+        });
+    </script>
 </body>
 </html>

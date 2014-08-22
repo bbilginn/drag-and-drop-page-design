@@ -60,23 +60,8 @@ $(function () {
         //seçim dýþý kalan tr siler
         if (newTrCount < 0) for (trOrder = 0; trOrder < Math.abs(newTrCount) ; trOrder++) $(tableId + ' > table > tbody > tr').last().remove();
 
+        draggableInit();
         eventChangeData();
-    });
-
-    //only empty cell selectable
-    $('table.table-layout, table.table-panel').selectable({
-        filter: "td.empty",
-        selecting: function (event, ui) {
-            //var td = $(ui.selecting);
-
-            //if (td.closest('table').hasClass('table-layout')) {
-            //    console.log('table-layout');
-            //} else {
-            //    console.log('table-panel');
-            //}
-
-            //console.log(td);
-        }
     });
 
     // seçili hüçrelerin merge edilmesi
@@ -119,5 +104,8 @@ $(function () {
                 $elem.remove();
             }
         });
+
+        draggableInit();
+        eventChangeData();
     });
 });
