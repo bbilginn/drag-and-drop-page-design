@@ -1,4 +1,4 @@
-$(function () {
+function tableSizer() {
     var sizeChooser = $('.SizeChooser');
     sizeChooser.each(function () {
         var trs = $(this).find('table tr'),
@@ -30,7 +30,9 @@ $(function () {
             });
         });
     });
+}
 
+$(function () {
     //table  generator
     $('body').on('click', 'td[data-index] button', function () {
         var trIndex = $(this).closest('tr').data('index'), tdIndex = $(this).parent().data('index'),
@@ -105,7 +107,9 @@ $(function () {
             }
         });
 
+
         draggableInit();
         eventChangeData();
+        enableAddPanelButton(table);
     });
 });

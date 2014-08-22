@@ -24,7 +24,7 @@ var sections = [
 ];
 
 var layout = { Id: 1, RowCount: 2, Sections: sections };
-
+layout = [];
 
 $(function () {
     var table = $('<table class="table table-bordered table-layout" />');
@@ -35,8 +35,7 @@ $(function () {
             if (this.RowOrder == i + 1) {
                 var panel = $('.panel.hidden').clone()
                     .removeClass('hidden')
-                    .addClass(this.Color)
-                    .attr('id', this.Id);
+                    .addClass(this.Color);
 
                 panel.find('.panel-heading span [contenteditable]').attr('data-name', this.Name).html(this.Name);
 
@@ -57,8 +56,8 @@ $(function () {
                                 pTr.append(td);
                             }
                         });
-                        panel.find('.panel-body').attr('id', i); // benzersiz id
-                        panel.find('.tools').attr('data-id', i); // benzersiz id
+                        panel.find('.panel-body').attr('id', panel.attr('id')); // benzersiz id
+                        panel.find('.tools').attr('data-id', panel.attr('id')); // benzersiz id
                         panel.find('.panel-body table').append(pTr);
                     }
                 }

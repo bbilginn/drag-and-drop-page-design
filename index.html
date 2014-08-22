@@ -55,6 +55,9 @@
         <button type="button" class="btn btn-sm btn-default merge" title='@Html.Localize("btn_merge")'>
             <i class="fa fa-compress fa-2x"></i>
         </button>
+        <button type="button" class="btn btn-sm btn-default btn-add-panel" title='@Html.Localize("btn_new_panel")' style="display: none">
+            <i class="fa fa-plus fa-2x"></i>
+        </button>
     </div>
 
     <div class="row" id="PageLayout">
@@ -62,7 +65,7 @@
     </div>
 
     <!--Kýlavuz panel-->
-    <div class="panel hidden">
+    <div class="panel panel-default hidden">
         <div class="panel-heading tools">
             <span><button class="btn btn-xs contenteditable"><i class="fa fa-edit" style="cursor: pointer"></i></button> <span contenteditable="false">New panel</span></span>
             <div class="pull-right">
@@ -131,8 +134,31 @@
     <script src="js/table-generator.js"></script>
     <script src="js/panel-helper.js"></script>
     <script>
-        $(function() {
-            draggableInit(), selectableInit();
+        function createGuid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        $(function () {
+            draggableInit();
+            selectableInit();
+            tableSizer();
+
+            $('.btn-add-panel').click(function () {
+                var selected = $('#PageLayout .ui-selected');
+                if (selected.length==1) {
+                    var cloned = $('.panel.hidden').clone();
+
+                    var uniq = createGuid();
+                    cloned.find('.panel-body').attr('id', uniq); // benzersiz id
+                    cloned.find('.tools').attr('data-id', uniq); // benzersiz id
+
+                    selected.append(cloned.removeClass('hidden')).removeClass();
+
+                    tableSizer();
+                }
+            });
         });
     </script>
 </body>

@@ -10,9 +10,6 @@ function draggableInit() {
 
             draggedItem.removeClass().addClass('col-lg-12');
 
-            console.log('source: ' + sourceId);
-            console.log('target: ' + targetId);
-
             sourceZone.removeClass('ui-selected').addClass('empty');
             if (targetId == 'cf_source') {
                 draggedItem.removeClass().addClass('col-lg-3');
@@ -20,7 +17,7 @@ function draggableInit() {
                 draggedItem.parent().removeClass();
                 if (draggedItem.parent().children('div').length > 1) {
                     if (sourceId != 'cf_source') sourceZone.removeClass();
-                    else draggedItem.removeClass().addClass('col-lg-3'); 
+                    else draggedItem.removeClass().addClass('col-lg-3');
                     sourceZone.append(draggedItem)
                 }
             }
@@ -49,6 +46,15 @@ function selectableInit() {
         },
         stop: function (event, ui) {
             $(event.target).find(':not(.empty)').removeClass('ui-selected');
+            enableAddPanelButton($(event.target));
         }
     });
+}
+
+function enableAddPanelButton(table) {
+    if (table.find('.ui-selected').length == 1) {
+        $('.btn-add-panel').show();
+    } else {
+        $('.btn-add-panel').hide();
+    }
 }
