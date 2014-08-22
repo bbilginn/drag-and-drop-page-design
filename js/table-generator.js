@@ -81,28 +81,31 @@ $(function () {
 
     // seçili hüçrelerin merge edilmesi
     $('body').on('click', '.tools .merge', function () {
-        var selector = '#' + $(this).closest('.tools').data('id') + ' .ui-selected',
-            selectedCells = $(selector),
-            cs = 0;
+        var containerId = '#' + $(this).closest('.tools').data('id'),
+            table = $(containerId + ' table tbody'),
+            selectedSelector = containerId + ' .ui-selected',
+            cs = 0, rs = 0;
 
-        selectedCells.each(function () { cs += parseInt($(this).attr('colspan')); });
+        table.find('tr').each(function () {
+            var $tr = $(this),
+                selecteds = $tr.find('.ui-selected');
 
-        selectedCells.last().after(($('<td/>', { colspan: cs, rowspan: 1, 'class': 'empty ui-selected' })));
-        selectedCells.remove();
+            if (selecteds.length <= 1) return;
 
-        $(selector).each(function (i) {
+            selecteds.each(function () { cs += parseInt($(this).attr('colspan')); });
+            selecteds.last().after(($('<td/>', { colspan: cs, rowspan: 1, 'class': 'empty ui-selected' })));
+            selecteds.remove();
+        });
+
+        $(selectedSelector).each(function () { rs += parseInt($(this).attr('rowspan')); });
+        $(selectedSelector).each(function (i) {
+            if ($(selectedSelector).length <= 1) return;
             var $elem = $(this);
-
             if (i == 0) {
-                $elem.attr('rowspan', $(selector).length);
+                $elem.attr('rowspan', rs);
             } else {
                 $elem.remove();
             }
-
-            //    tr = $elem.parent(),
-            //    tds = tr.find('.ui-selected');
-
-            //tds.last().after(($('<td/>', { colspan: tds.length, rowspan: 1, 'class': 'empty' })));
         });
     });
 });
