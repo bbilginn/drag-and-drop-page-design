@@ -82,27 +82,39 @@ $(function () {
     // seçili hüçrelerin merge edilmesi
     $('body').on('click', '.tools .merge', function () {
         var containerId = '#' + $(this).closest('.tools').data('id'),
-            table = $(containerId + ' table tbody'),
-            selectedSelector = containerId + ' .ui-selected',
-            cs = 0, rs = 0;
+            table = $(containerId + ' > table > tbody'),
+            selectedSelector = containerId + ' > table > tbody > tr .ui-selected',
+            cs = 0, rs = 1;
 
         table.find('tr').each(function () {
             var $tr = $(this),
                 selecteds = $tr.find('.ui-selected');
 
-            if (selecteds.length <= 1) return;
+            //if (selecteds.length <= 1) return;
 
-            selecteds.each(function () { cs += parseInt($(this).attr('colspan')); });
-            selecteds.last().after(($('<td/>', { colspan: cs, rowspan: 1, 'class': 'empty ui-selected' })));
+            cs = 0;
+            selecteds.each(function () {
+                cs += parseInt($(this).attr('colspan'));
+                var newRs = parseInt($(this).attr('rowspan'));
+                if (newRs > rs) rs = newRs;
+            });
+            selecteds.last().after(($('<td/>', { colspan: cs, rowspan: rs, 'class': 'empty ui-selected' })));
             selecteds.remove();
         });
 
-        $(selectedSelector).each(function () { rs += parseInt($(this).attr('rowspan')); });
+        rs = 0, cs = 1;
+        $(selectedSelector).each(function () {
+            rs += parseInt($(this).attr('rowspan'));
+            var newCs = parseInt($(this).attr('colspan'));
+            if (newCs > cs) cs = newCs;
+        });
         $(selectedSelector).each(function (i) {
-            if ($(selectedSelector).length <= 1) return;
+
+            //if ($(selectedSelector).length <= 1) return;
+
             var $elem = $(this);
             if (i == 0) {
-                $elem.attr('rowspan', rs);
+                $elem.attr('rowspan', rs).attr('colspan', cs);
             } else {
                 $elem.remove();
             }
