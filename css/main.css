@@ -1,0 +1,79 @@
+  .table-layout tr td {
+            /*border: 1px dashed #ddd !important;*/
+            padding: 15px;
+        }
+
+        .table-panel tr td {
+            border: 1px dashed #eee !important;
+            padding: 15px;
+        }
+
+        [contenteditable="true"]:active,
+        [contenteditable="true"]:focus {
+            padding: 5px 15px;
+            font-size: 15px;
+            line-height: 1.42857;
+            color: #2C3E50;
+            background-color: #FFF;
+            background-image: none;
+            border: 1px solid #DCE4EC;
+            border-radius: 4px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+            transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        }
+
+        [contenteditable="true"]:hover {
+            outline: 2px dashed #0090D2;
+        }
+
+        .SizeChooser {
+            margin: 5px 10px;
+            position: relative;
+            text-align: center;
+        }
+
+            .SizeChooser table {
+                border-collapse: separate;
+                border-spacing: 3px;
+            }
+
+            .SizeChooser td {
+                cursor: pointer;
+                height: 10px;
+                min-width: 10px;
+                line-height: 10px;
+                /*border: 1px solid #CCC !important;*/
+                padding: 0 !important;
+            }
+            .SizeChooser td button {
+                height: 12px!important;
+                width: 10px!important;
+            }
+
+        .SizeChooser-hover {
+            background-color: red;
+        }
+
+        .SizeChooser-selected {
+            border: 1px #333 solid !important;
+        }
+
+        .SizeChooser input {
+            width: 40px;
+        }
+
+        .ui-selecting {
+            background: blue;
+        }
+
+        .ui-selected {
+            background: green;
+        }
+
+        td.empty {
+            padding: 20px !important;
+        }
+        .draggable {
+            cursor: pointer;
+            margin-right: 10px;
+        }

@@ -1,89 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>...</title>
+    <title>Page Designer</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
-    <style>
-        .table-layout tr td {
-            /*border: 1px dashed #ddd !important;*/
-            padding: 15px;
-        }
-
-        .table-panel tr td {
-            border: 1px dashed #eee !important;
-            padding: 15px;
-        }
-
-        [contenteditable="true"]:active,
-        [contenteditable="true"]:focus {
-            padding: 5px 15px;
-            font-size: 15px;
-            line-height: 1.42857;
-            color: #2C3E50;
-            background-color: #FFF;
-            background-image: none;
-            border: 1px solid #DCE4EC;
-            border-radius: 4px;
-            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
-            transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-        }
-
-        [contenteditable="true"]:hover {
-            outline: 2px dashed #0090D2;
-        }
-
-        .SizeChooser {
-            margin: 5px 10px;
-            position: relative;
-            text-align: center;
-        }
-
-            .SizeChooser table {
-                border-collapse: separate;
-                border-spacing: 3px;
-            }
-
-            .SizeChooser td {
-                cursor: pointer;
-                height: 10px;
-                min-width: 10px;
-                line-height: 10px;
-                /*border: 1px solid #CCC !important;*/
-                padding: 0 !important;
-            }
-            .SizeChooser td button {
-                height: 12px!important;
-                width: 10px!important;
-            }
-
-        .SizeChooser-hover {
-            background-color: red;
-        }
-
-        .SizeChooser-selected {
-            border: 1px #333 solid !important;
-        }
-
-        .SizeChooser input {
-            width: 40px;
-        }
-
-        .ui-selecting {
-            background: blue;
-        }
-
-        .ui-selected {
-            background: green;
-        }
-
-        td.empty {
-            padding: 20px !important;
-        }
-    </style>
+    <link href="css/main.css" rel="stylesheet" />
 </head>
 <body class="container">
     <br />
+
+    <div class="well customfieldsource">
+        <div id="XX" title="XX" class="col-md-3">
+            <div class="draggable col-lg-12 bg-primary">
+                <i class="fa fa-database"></i>
+                XX
+            </div>
+        </div>
+        <div id="XX" title="XX" class="col-md-3">
+            <div class="draggable col-lg-12 bg-primary">
+                <i class="fa fa-database"></i>
+                XX
+            </div>
+        </div>
+        <div id="YY" title="YY" class="col-md-3">
+            <div class="draggable col-lg-12 bg-primary">
+                <i class="fa fa-database"></i>
+                YY
+            </div>
+        </div>
+        <br />
+    </div>
 
     <div class="well text-center tools" data-id="PageLayout">
         <div class="btn-group">
@@ -178,6 +124,6 @@
     <script src="js/data-loader.js"></script>
     <script src="js/table-generator.js"></script>
     <script src="js/panel-helper.js"></script>
-
+    <script src="js/item-draggable.js"></script>
 </body>
 </html>

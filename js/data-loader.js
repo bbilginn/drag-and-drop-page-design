@@ -43,11 +43,15 @@ $(function () {
                         var pTr = $('<tr/>');
                         $.each(this.Fields, function () {
                             if (this.RowOrder == j + 1) {
-                                var input = $('<input type="text" class="form-control">');
-                                var td = $('<td/>', {
+
+                                var item = $('<div/>', { id: this.FieldId, title: this.Name, 'class': 'col-md-12' })
+                                                    .append($('<div/>', { 'class': 'draggable col-lg-12 bg-primary' })
+                                                    .append($('<i/>', { 'class': 'fa fa-database' })).append(' ' + this.Name)),
+                                td = $('<td/>', {
                                     colspan: this.Colspan,
                                     rowspan: this.Rowspan
-                                }).append(this.Name);
+                                }).append(item);
+
                                 pTr.append(td);
                             }
                         });
