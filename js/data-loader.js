@@ -45,7 +45,7 @@ $(function () {
                         $.each(this.Fields, function () {
                             if (this.RowOrder == j + 1) {
 
-                                var item = $('<div/>', { id: this.FieldId, title: this.Name, 'class': 'col-lg-12' })
+                                var item = $('<div/>', { id: this.FieldId, title: this.Name, 'class': 'col-lg-12', cf:'' })
                                                     .append($('<div/>', { 'class': 'draggable col-lg-12 bg-primary' })
                                                     .append($('<i/>', { 'class': 'fa fa-database' })).append(' ' + this.Name)),
                                 td = $('<td/>', {

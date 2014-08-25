@@ -49,19 +49,14 @@ $(function () {
         trs.each(function () {
             var $tr = $(this);
             for (var j = 0; j < newTdCount; j++) $tr.append($('<td/>', { colspan: 1, rowspan: 1, 'class': 'empty' }));
+
             //seçim dýþý kalan td siler
-            if (newTdCount < 0) {
-                if (isDeletable == null && $tr.find('td:not(.empty)').length > 0) {
-                    if (window.confirm('Dizaynda alanlar var, devam edilsin mi?')) {
-                        isDeletable = true;
-                        for (i = 0; i < Math.abs(newTdCount) ; i++) $tr.find('td').last().remove();
-                    } else {
-                        isDeletable = false;
-                    }
-                } else if (isDeletable) {
-                    for (i = 0; i < Math.abs(newTdCount) ; i++) $tr.find('td').last().remove();
-                }
+            if (newTdCount < 0) for (i = 0; i < Math.abs(newTdCount) ; i++) {
+                var last = $tr.find('td').last();
+                last.find('div[cf]').clone().removeClass().addClass('col-lg-3').appendTo('#cf_source .panel-body');
+                last.remove();
             }
+
         });
         tdMaxCount += newTdCount;
 
@@ -73,15 +68,10 @@ $(function () {
         }
 
         //seçim dýþý kalan tr siler
-        if (newTrCount < 0) {
-            var rows = $(tableId + ' > table > tbody > tr');
-            if (isDeletable == null && rows.find('td:not(.empty)').length > 0) {
-                if (window.confirm('Dizaynda alanlar var, devam edilsin mi?')) {
-                    for (trOrder = 0; trOrder < Math.abs(newTrCount) ; trOrder++) rows.last().remove();
-                }
-            } else if (isDeletable) {
-                for (trOrder = 0; trOrder < Math.abs(newTrCount) ; trOrder++) rows.last().remove();
-            }
+        if (newTrCount < 0) for (trOrder = 0; trOrder < Math.abs(newTrCount) ; trOrder++) {
+            var last = $(tableId + ' > table > tbody > tr').last();
+            last.find('div[cf]').clone().removeClass().addClass('col-lg-3').appendTo('#cf_source .panel-body');
+            last.remove();
         }
 
         draggableInit();

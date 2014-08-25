@@ -47,6 +47,7 @@ function selectableInit() {
         stop: function (event, ui) {
             $(event.target).find(':not(.empty)').removeClass('ui-selected');
             enableAddPanelButton($(event.target));
+            selectableInit();
         }
     });
 }
