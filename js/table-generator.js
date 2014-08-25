@@ -38,7 +38,7 @@ $(function () {
         var trIndex = $(this).closest('tr').data('index'), tdIndex = $(this).parent().data('index'),
             tableId = '#' + $(this).closest('.tools').data('id'),
             table = $(tableId + ' > table'), trs = $(tableId + ' > table > tbody > tr'),
-            trOrder, tdMaxCount = 0, newTrCount = (trIndex - trs.length), newTdCount;
+            trOrder, tdMaxCount = 0, newTrCount = (trIndex - trs.length), newTdCount, isDeletable = null;
 
         trs.each(function () {
             var $tr = $(this), $tdLen = $tr.children('td').length;
@@ -49,7 +49,19 @@ $(function () {
         trs.each(function () {
             var $tr = $(this);
             for (var j = 0; j < newTdCount; j++) $tr.append($('<td/>', { colspan: 1, rowspan: 1, 'class': 'empty' }));
-            if (newTdCount < 0) for (i = 0; i < Math.abs(newTdCount) ; i++) $tr.find('td').last().remove();
+            //seçim dýþý kalan td siler
+            if (newTdCount < 0) {
+                if (isDeletable == null && $tr.find('td:not(.empty)').length > 0) {
+                    if (window.confirm('Dizaynda alanlar var, devam edilsin mi?')) {
+                        isDeletable = true;
+                        for (i = 0; i < Math.abs(newTdCount) ; i++) $tr.find('td').last().remove();
+                    } else {
+                        isDeletable = false;
+                    }
+                } else if (isDeletable) {
+                    for (i = 0; i < Math.abs(newTdCount) ; i++) $tr.find('td').last().remove();
+                }
+            }
         });
         tdMaxCount += newTdCount;
 
@@ -59,8 +71,18 @@ $(function () {
             for (var i = 0; i < tdMaxCount; i++) tr.append($('<td/>', { colspan: 1, rowspan: 1, 'class': 'empty' }));
             table.append(tr);
         }
+
         //seçim dýþý kalan tr siler
-        if (newTrCount < 0) for (trOrder = 0; trOrder < Math.abs(newTrCount) ; trOrder++) $(tableId + ' > table > tbody > tr').last().remove();
+        if (newTrCount < 0) {
+            var rows = $(tableId + ' > table > tbody > tr');
+            if (isDeletable == null && rows.find('td:not(.empty)').length > 0) {
+                if (window.confirm('Dizaynda alanlar var, devam edilsin mi?')) {
+                    for (trOrder = 0; trOrder < Math.abs(newTrCount) ; trOrder++) rows.last().remove();
+                }
+            } else if (isDeletable) {
+                for (trOrder = 0; trOrder < Math.abs(newTrCount) ; trOrder++) rows.last().remove();
+            }
+        }
 
         draggableInit();
         eventChangeData();
@@ -76,8 +98,6 @@ $(function () {
         table.find('tr').each(function () {
             var $tr = $(this),
                 selecteds = $tr.find('.ui-selected');
-
-            //if (selecteds.length <= 1) return;
 
             cs = 0;
             selecteds.each(function () {
@@ -96,8 +116,6 @@ $(function () {
             if (newCs > cs) cs = newCs;
         });
         $(selectedSelector).each(function (i) {
-
-            //if ($(selectedSelector).length <= 1) return;
 
             var $elem = $(this);
             if (i == 0) {
