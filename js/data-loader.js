@@ -24,7 +24,7 @@ var sections = [
 ];
 
 var layout = { Id: 1, RowCount: 2, Sections: sections };
-layout = [];
+//layout = [];
 
 $(function () {
     var table = $('<table class="table table-bordered table-layout" />');
@@ -56,8 +56,9 @@ $(function () {
                                 pTr.append(td);
                             }
                         });
-                        panel.find('.panel-body').attr('id', panel.attr('id')); // benzersiz id
-                        panel.find('.tools').attr('data-id', panel.attr('id')); // benzersiz id
+                        var uniqId = createGuid();
+                        panel.find('.panel-body').attr('id', uniqId); // benzersiz id
+                        panel.find('.tools').attr('data-id', uniqId); // benzersiz id
                         panel.find('.panel-body table').append(pTr);
                     }
                 }

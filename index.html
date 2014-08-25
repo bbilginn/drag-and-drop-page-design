@@ -130,10 +130,6 @@
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <script src="js/item-draggable.js"></script>
-    <script src="js/data-loader.js"></script>
-    <script src="js/table-generator.js"></script>
-    <script src="js/panel-helper.js"></script>
     <script>
         function createGuid() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -141,6 +137,12 @@
                 return v.toString(16);
             });
         }
+    </script>
+    <script src="js/item-draggable.js"></script>
+    <script src="js/data-loader.js"></script>
+    <script src="js/table-generator.js"></script>
+    <script src="js/panel-helper.js"></script>
+    <script>
         $(function () {
             draggableInit();
             selectableInit();
@@ -148,7 +150,7 @@
 
             $('.btn-add-panel').click(function () {
                 var selected = $('#PageLayout .ui-selected');
-                if (selected.length==1) {
+                if (selected.length == 1) {
                     var cloned = $('.panel.hidden').clone();
 
                     var uniq = createGuid();
@@ -157,6 +159,7 @@
 
                     selected.append(cloned.removeClass('hidden')).removeClass();
 
+                    selectableInit();
                     tableSizer();
                 }
             });
